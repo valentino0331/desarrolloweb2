@@ -1,0 +1,338 @@
+﻿{
+    "item":  [
+                 {
+                     "name":  "1. Consigna 4 - Login Valentino (Obtener JWT)",
+                     "request":  {
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost"
+                                                          ],
+                                                 "protocol":  "http",
+                                                 "raw":  "http://localhost:8080/api/auth/login",
+                                                 "port":  "8080",
+                                                 "path":  [
+                                                              "api",
+                                                              "auth",
+                                                              "login"
+                                                          ]
+                                             },
+                                     "method":  "POST",
+                                     "body":  {
+                                                  "raw":  "{\"username\": \"valentino\", \"password\": \"User123!*\"}",
+                                                  "mode":  "raw"
+                                              },
+                                     "header":  [
+                                                    {
+                                                        "key":  "Content-Type",
+                                                        "value":  "application/json"
+                                                    }
+                                                ]
+                                 }
+                 },
+                 {
+                     "name":  "2. Consigna 4 - Registro Nuevo Usuario",
+                     "request":  {
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost"
+                                                          ],
+                                                 "protocol":  "http",
+                                                 "raw":  "http://localhost:8080/api/auth/register",
+                                                 "port":  "8080",
+                                                 "path":  [
+                                                              "api",
+                                                              "auth",
+                                                              "register"
+                                                          ]
+                                             },
+                                     "method":  "POST",
+                                     "body":  {
+                                                  "raw":  "{\"username\": \"carlos_utp\", \"email\": \"carlos.ramos@utp.edu.pe\", \"password\": \"User123!*\", \"fullName\": \"Carlos Alberto Ramos\", \"monthlyIncome\": 1600.00}",
+                                                  "mode":  "raw"
+                                              },
+                                     "header":  [
+                                                    {
+                                                        "key":  "Content-Type",
+                                                        "value":  "application/json"
+                                                    }
+                                                ]
+                                 }
+                 },
+                 {
+                     "name":  "3. Consigna 3 - Login Admin (Rol ADMIN)",
+                     "request":  {
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost"
+                                                          ],
+                                                 "protocol":  "http",
+                                                 "raw":  "http://localhost:8080/api/auth/login",
+                                                 "port":  "8080",
+                                                 "path":  [
+                                                              "api",
+                                                              "auth",
+                                                              "login"
+                                                          ]
+                                             },
+                                     "method":  "POST",
+                                     "body":  {
+                                                  "raw":  "{\"username\": \"admin\", \"password\": \"Admin123!*\"}",
+                                                  "mode":  "raw"
+                                              },
+                                     "header":  [
+                                                    {
+                                                        "key":  "Content-Type",
+                                                        "value":  "application/json"
+                                                    }
+                                                ]
+                                 }
+                 },
+                 {
+                     "name":  "4. Consigna 1 - Listar Gastos (Persistencia JPA)",
+                     "request":  {
+                                     "method":  "GET",
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost"
+                                                          ],
+                                                 "protocol":  "http",
+                                                 "raw":  "http://localhost:8080/api/expenses",
+                                                 "port":  "8080",
+                                                 "path":  [
+                                                              "api",
+                                                              "expenses"
+                                                          ]
+                                             },
+                                     "header":  [
+                                                    {
+                                                        "key":  "Authorization",
+                                                        "value":  "Bearer {{token}}"
+                                                    }
+                                                ]
+                                 }
+                 },
+                 {
+                     "name":  "5. Consigna 1 - Crear Gasto (Mutacion JPA)",
+                     "request":  {
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost"
+                                                          ],
+                                                 "protocol":  "http",
+                                                 "raw":  "http://localhost:8080/api/expenses",
+                                                 "port":  "8080",
+                                                 "path":  [
+                                                              "api",
+                                                              "expenses"
+                                                          ]
+                                             },
+                                     "method":  "POST",
+                                     "body":  {
+                                                  "raw":  "{\"amount\": 22.50, \"categoryName\": \"Comida\", \"subcategory\": \"Cena\", \"description\": \"Cena en campus UTP\", \"recurrence\": \"ONCE\"}",
+                                                  "mode":  "raw"
+                                              },
+                                     "header":  [
+                                                    {
+                                                        "key":  "Authorization",
+                                                        "value":  "Bearer {{token}}"
+                                                    },
+                                                    {
+                                                        "key":  "Content-Type",
+                                                        "value":  "application/json"
+                                                    }
+                                                ]
+                                 }
+                 },
+                 {
+                     "name":  "6. Consigna 2 - JPQL Filtro Categoria Comida",
+                     "request":  {
+                                     "method":  "GET",
+                                     "url":  {
+                                                 "port":  "8080",
+                                                 "host":  [
+                                                              "localhost"
+                                                          ],
+                                                 "query":  [
+                                                               {
+                                                                   "key":  "category",
+                                                                   "value":  "Comida"
+                                                               }
+                                                           ],
+                                                 "path":  [
+                                                              "api",
+                                                              "expenses",
+                                                              "filter",
+                                                              "category"
+                                                          ],
+                                                 "raw":  "http://localhost:8080/api/expenses/filter/category?category=Comida",
+                                                 "protocol":  "http"
+                                             },
+                                     "header":  [
+                                                    {
+                                                        "key":  "Authorization",
+                                                        "value":  "Bearer {{token}}"
+                                                    }
+                                                ]
+                                 }
+                 },
+                 {
+                     "name":  "7. Consigna 2 - JPQL Gastos de Alto Valor",
+                     "request":  {
+                                     "method":  "GET",
+                                     "url":  {
+                                                 "port":  "8080",
+                                                 "host":  [
+                                                              "localhost"
+                                                          ],
+                                                 "query":  [
+                                                               {
+                                                                   "key":  "minAmount",
+                                                                   "value":  "100.00"
+                                                               }
+                                                           ],
+                                                 "path":  [
+                                                              "api",
+                                                              "expenses",
+                                                              "filter",
+                                                              "high-value"
+                                                          ],
+                                                 "raw":  "http://localhost:8080/api/expenses/filter/high-value?minAmount=100.00",
+                                                 "protocol":  "http"
+                                             },
+                                     "header":  [
+                                                    {
+                                                        "key":  "Authorization",
+                                                        "value":  "Bearer {{token}}"
+                                                    }
+                                                ]
+                                 }
+                 },
+                 {
+                     "name":  "8. Consignas 1 y 2 - Misiones de Ahorro",
+                     "request":  {
+                                     "method":  "GET",
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost"
+                                                          ],
+                                                 "protocol":  "http",
+                                                 "raw":  "http://localhost:8080/api/missions",
+                                                 "port":  "8080",
+                                                 "path":  [
+                                                              "api",
+                                                              "missions"
+                                                          ]
+                                             },
+                                     "header":  [
+                                                    {
+                                                        "key":  "Authorization",
+                                                        "value":  "Bearer {{token}}"
+                                                    }
+                                                ]
+                                 }
+                 },
+                 {
+                     "name":  "9. Consigna 2 - JPQL Misiones Cerca al Vencimiento",
+                     "request":  {
+                                     "method":  "GET",
+                                     "url":  {
+                                                 "port":  "8080",
+                                                 "host":  [
+                                                              "localhost"
+                                                          ],
+                                                 "query":  [
+                                                               {
+                                                                   "key":  "days",
+                                                                   "value":  "30"
+                                                               }
+                                                           ],
+                                                 "path":  [
+                                                              "api",
+                                                              "missions",
+                                                              "filter",
+                                                              "near-deadline"
+                                                          ],
+                                                 "raw":  "http://localhost:8080/api/missions/filter/near-deadline?days=30",
+                                                 "protocol":  "http"
+                                             },
+                                     "header":  [
+                                                    {
+                                                        "key":  "Authorization",
+                                                        "value":  "Bearer {{token}}"
+                                                    }
+                                                ]
+                                 }
+                 },
+                 {
+                     "name":  "10. Consigna 3 - Admin Listar Usuarios (@PreAuthorize)",
+                     "request":  {
+                                     "method":  "GET",
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost"
+                                                          ],
+                                                 "protocol":  "http",
+                                                 "raw":  "http://localhost:8080/api/users",
+                                                 "port":  "8080",
+                                                 "path":  [
+                                                              "api",
+                                                              "users"
+                                                          ]
+                                             },
+                                     "header":  [
+                                                    {
+                                                        "key":  "Authorization",
+                                                        "value":  "Bearer {{token_admin}}"
+                                                    }
+                                                ]
+                                 }
+                 },
+                 {
+                     "name":  "11. Consigna 3 - Prueba Seguridad 403 Forbidden",
+                     "request":  {
+                                     "method":  "GET",
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost"
+                                                          ],
+                                                 "protocol":  "http",
+                                                 "raw":  "http://localhost:8080/api/users",
+                                                 "port":  "8080",
+                                                 "path":  [
+                                                              "api",
+                                                              "users"
+                                                          ]
+                                             },
+                                     "header":  [
+                                                    {
+                                                        "key":  "Authorization",
+                                                        "value":  "Bearer {{token}}"
+                                                    }
+                                                ]
+                                 }
+                 },
+                 {
+                     "name":  "12. Consigna 4 - Prueba Sin Token 401 Unauthorized",
+                     "request":  {
+                                     "method":  "GET",
+                                     "url":  {
+                                                 "host":  [
+                                                              "localhost"
+                                                          ],
+                                                 "protocol":  "http",
+                                                 "raw":  "http://localhost:8080/api/expenses",
+                                                 "port":  "8080",
+                                                 "path":  [
+                                                              "api",
+                                                              "expenses"
+                                                          ]
+                                             }
+                                 }
+                 }
+             ],
+    "info":  {
+                 "description":  "Coleccion de pruebas para el Avance de Portafolio 2 (APF2) UTP",
+                 "name":  "Salvia Finanzas APF2 - Evaluacion Completa",
+                 "schema":  "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+             }
+}

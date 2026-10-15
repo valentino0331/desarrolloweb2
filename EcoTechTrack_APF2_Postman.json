@@ -1,0 +1,298 @@
+{
+    "info": {
+        "name": "EcoTechTrack APF2 - Trazabilidad RAEE (MINAM)",
+        "description": "Colección completa de pruebas para EcoTechTrack: Sistema de Trazabilidad y Fiscalización de RAEE (D.S. N° 009-2019-MINAM). Cumple las 4 consignas de la Rúbrica APF2 de Desarrollo Web II.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "1. Consigna 4 - Login Generador Valentino (Obtener JWT)",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "var jsonData = pm.response.json();",
+                            "if (jsonData.token) {",
+                            "    pm.environment.set(\"token\", jsonData.token);",
+                            "}"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"username\": \"valentino\",\n  \"password\": \"User123!*\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/auth/login",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8080",
+                    "path": ["api", "auth", "login"]
+                }
+            }
+        },
+        {
+            "name": "2. Consigna 4 - Registro Nueva Entidad Generadora",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"username\": \"bcp_tecnologia\",\n  \"email\": \"gestion.raee@bcp.com.pe\",\n  \"password\": \"User123!*\",\n  \"fullName\": \"Banco de Crédito del Perú S.A.\",\n  \"monthlyIncome\": 45000.00\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/auth/register",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8080",
+                    "path": ["api", "auth", "register"]
+                }
+            }
+        },
+        {
+            "name": "3. Consigna 3 - Login Admin Fiscalizador MINAM (Rol ADMIN)",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "var jsonData = pm.response.json();",
+                            "if (jsonData.token) {",
+                            "    pm.environment.set(\"token_admin\", jsonData.token);",
+                            "}"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"Admin123!*\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/auth/login",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8080",
+                    "path": ["api", "auth", "login"]
+                }
+            }
+        },
+        {
+            "name": "4. Consigna 1 - Listar Activos RAEE Dados de Baja (JPA)",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:8080/api/expenses",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8080",
+                    "path": ["api", "expenses"]
+                }
+            }
+        },
+        {
+            "name": "5. Consigna 1 - Registrar Baja de Activo RAEE con Metales Pesados",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"amount\": 18.50,\n  \"categoryName\": \"TIC - Equipos de Informática\",\n  \"subcategory\": \"Servidor Rack / Baterías Cadmio\",\n  \"description\": \"Servidor PowerEdge R720 dado de baja por obsolescencia. Contiene soldaduras con Plomo y baterías auxiliares con Cadmio (D.S. 009-2019-MINAM)\",\n  \"recurrence\": \"BAJA_DEFINITIVA\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/expenses",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8080",
+                    "path": ["api", "expenses"]
+                }
+            }
+        },
+        {
+            "name": "6. Consigna 2 - JPQL Filtro por Categoría RAEE (TIC)",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:8080/api/expenses/filter/category?category=TIC",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8080",
+                    "path": ["api", "expenses", "filter", "category"],
+                    "query": [
+                        {
+                            "key": "category",
+                            "value": "TIC"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "7. Consigna 2 - JPQL Filtro Activos RAEE de Gran Volumen o Peso",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:8080/api/expenses/filter/high-value?minAmount=15.00",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8080",
+                    "path": ["api", "expenses", "filter", "high-value"],
+                    "query": [
+                        {
+                            "key": "minAmount",
+                            "value": "15.00"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "8. Consignas 1 y 2 - Listar Manifiestos de Entrega a EO-RS",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:8080/api/missions",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8080",
+                    "path": ["api", "missions"]
+                }
+            }
+        },
+        {
+            "name": "9. Consigna 2 - JPQL Manifiestos Próximos a Vencimiento Legal MINAM",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:8080/api/missions/filter/near-deadline?days=30",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8080",
+                    "path": ["api", "missions", "filter", "near-deadline"],
+                    "query": [
+                        {
+                            "key": "days",
+                            "value": "30"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "10. Consigna 3 - Admin Fiscalizador Listar Entidades (@PreAuthorize)",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token_admin}}"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:8080/api/users",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8080",
+                    "path": ["api", "users"]
+                }
+            }
+        },
+        {
+            "name": "11. Consigna 3 - Prueba Seguridad 403 Forbidden (Generador sin permiso)",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:8080/api/users",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8080",
+                    "path": ["api", "users"]
+                }
+            }
+        },
+        {
+            "name": "12. Consigna 4 - Prueba Sin Token 401 Unauthorized",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8080/api/expenses",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8080",
+                    "path": ["api", "expenses"]
+                }
+            }
+        }
+    ]
+}
